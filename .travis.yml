@@ -14,7 +14,7 @@ env:
 after_success:
   if ([ "$TRAVIS_BRANCH" == "develop" ] || [ ! -z "$TRAVIS_TAG" ]) &&
       [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    curl --ftp-create-dirs -T dist/* -u $FTP_USER:$FTP_PASSWORD $FTP_DEV_ROOT;
+    "curl --ftp-create-dirs -T dist/* -u $FTP_USER:$FTP_PASSWORD $FTP_DEV_ROOT"
   else
     echo "This will not deploy!";
   fi
