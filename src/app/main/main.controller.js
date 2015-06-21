@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController($timeout, bungieApi, webDevTec, toastr) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -17,10 +17,11 @@
     activate();
 
     function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+        getWebDevTec();
+        $timeout(function() {
+            vm.classAnimation = 'rubberBand';
+        }, 4000);
+        bungieApi.searchDestinyPlayer();
     }
 
     function showToastr() {
