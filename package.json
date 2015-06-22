@@ -1,7 +1,11 @@
 {
   "name": "destinyGamePlan",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.13.0",
+    "express-http-proxy": "^0.6.0"
+  },
   "scripts": {
     "test": "gulp test"
   },

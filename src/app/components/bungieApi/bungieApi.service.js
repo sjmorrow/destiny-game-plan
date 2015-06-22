@@ -8,16 +8,17 @@
     /** @ngInject */
     function bungieApi($log, samApiKey) {
 
-        var baseUrl = 'https://www.bungie.net/platform/destiny/';
+        var baseUrl = 'http://localhost:3005/bungie/platform/destiny/';
         var membershipType = 'tigerxbox';
         var displayName = 'xxcoastermanxx';
 
         function searchDestinyPlayer() {
             $.ajax({
-                url: baseUrl + 'searchdestinyplayer/' + membershipType + '/' + displayName,
+                url: baseUrl + 'searchdestinyplayer/' + membershipType + '/' + displayName + '/',
                 headers: {
                     'X-API-Key': samApiKey
-                }
+                },
+                dataType: 'json'
             }).done(function (data) {
                 $log.debug(data);
             });
