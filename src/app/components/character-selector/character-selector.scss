@@ -1,0 +1,30 @@
+.character-selector-container {
+    .character-selector {
+        color: white;
+        position: relative;
+        width: 33%;
+        img {
+            &.character-emblem {
+                display: inline-block;
+                height: 76px;
+            }
+            &.character-emblem-bg {
+                width: 100%;
+                position: absolute;
+                left: 0;
+                z-index: -1;
+            }
+        }
+        .character-text {
+            display: inline-block;
+            font-size: 17px;
+        }
+        .character-level {
+            font-size: 35px;
+            color: $yellow;
+            @include vertical-align();
+            position: absolute;
+            right: 0.7em;
+        }
+    }
+}

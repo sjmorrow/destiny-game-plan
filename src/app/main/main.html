@@ -1,4 +1,5 @@
 <div class="container">
+<<<<<<< Updated upstream
 
     <div>
         <acme-navbar creationDate="main.creationDate" />
@@ -25,6 +26,19 @@
                     <h3>{{ awesomeThing.title }}</h3>
                     <p>{{ awesomeThing.description }}</p>
                     <p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>
+=======
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="character-selector-container">
+                <div class="character-selector" ng-repeat="character in main.characters">
+                    <img class="character-emblem-bg" ng-src="{{character.emblemBackground}}">
+                    <img class="character-emblem" ng-src="{{character.emblem}}">
+                    <div class="character-level">&#x2726; {{character.level}}</div>
+                    <div class="character-text">
+                        <div class="character-class">{{character.class}}</div>
+                        <div class="character-race">{{character.race}}</div>
+                    </div>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
