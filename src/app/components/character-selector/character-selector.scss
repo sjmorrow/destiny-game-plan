@@ -1,30 +1,54 @@
 .character-selector-container {
+    display: flex;
+    flex-direction: column;
     .character-selector {
         color: white;
         position: relative;
-        width: 33%;
+        flex: 1;
+        //background: black;
+        border: 1px solid black;
+        overflow: hidden;
         img {
             &.character-emblem {
-                display: inline-block;
-                height: 76px;
+                height: 75%;
+                position: absolute;
+                left: 5%;
+                //@include vertical-align();
+                top: 12.5%;
+                opacity: 0.6;
             }
             &.character-emblem-bg {
                 width: 100%;
+                height: 100%;
                 position: absolute;
                 left: 0;
+                top: 0;
                 z-index: -1;
+                //display: none;
             }
         }
         .character-text {
             display: inline-block;
             font-size: 17px;
+            right: 0.7em;
+            @include vertical-align();
+            position: absolute;
+            //top: 12.5%;
         }
         .character-level {
             font-size: 35px;
             color: $yellow;
-            @include vertical-align();
-            position: absolute;
-            right: 0.7em;
+        }
+    
+    }
+    .character-details {
+        flex: 1;
+        transition: all 0.4s ease-in-out;
+        flex-grow: .00001;
+        overflow: hidden;
+        &.selected {
+            padding: 2em;
+            flex-grow: 5;
         }
     }
 }

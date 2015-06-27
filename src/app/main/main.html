@@ -1,17 +1,16 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="character-selector-container">
-                <div class="character-selector" ng-repeat="character in main.characters">
-                    <img class="character-emblem-bg" ng-src="{{character.emblemBackground}}">
-                    <img class="character-emblem" ng-src="{{character.emblem}}">
-                    <div class="character-level">&#x2726; {{character.level}}</div>
-                    <div class="character-text">
-                        <div class="character-class">{{character.class}}</div>
-                        <div class="character-race">{{character.race}}</div>
-                    </div>
-                </div>
+<div class="container-fluid">
+    <div class="character-selector-container full-height">
+        <div class="character-selector" ng-repeat-start="character in main.characters" ng-click="character.selected = !character.selected">
+            <img class="character-emblem-bg" ng-src="{{character.emblemBackground}}">
+            <img class="character-emblem" ng-src="{{character.emblem}}">
+            <div class="character-text">
+                <div class="character-class">{{character.class}}</div>
+                <div class="character-level">&#x2726; {{character.level}}</div>
+                <div class="character-race">{{character.race}}</div>
             </div>
+        </div>
+        <div class="character-details" ng-repeat-end ng-class="{'selected':character.selected}">
+            {{character.class}}, why havn't you done the nightfall yet?!?!
         </div>
     </div>
 </div>
