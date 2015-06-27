@@ -6,8 +6,12 @@
         position: relative;
         flex: 1;
         //background: black;
-        border: 1px solid black;
         overflow: hidden;
+        box-shadow: 0px 7px 25px 0px rgba(0,0,0,0.4);
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
         img {
             &.character-emblem {
                 height: 75%;
@@ -15,7 +19,7 @@
                 left: 5%;
                 //@include vertical-align();
                 top: 12.5%;
-                opacity: 0.6;
+                //opacity: 0.6;
             }
             &.character-emblem-bg {
                 width: 100%;
@@ -24,7 +28,8 @@
                 left: 0;
                 top: 0;
                 z-index: -1;
-                //display: none;
+                display: none;
+                //filter: blur(4px);
             }
         }
         .character-text {
@@ -38,6 +43,15 @@
         .character-level {
             font-size: 35px;
             color: $yellow;
+        }
+        &.Titan {
+            background-image: linear-gradient(to left, #000 0, rgba(0,0,0,0) 200px, rgba(0,0,0,0) 100%), url('../assets/images/characters/titan_bg.jpg');
+        }
+        &.Warlock {
+            background-image: linear-gradient(to left, #000 0, rgba(0,0,0,0) 200px, rgba(0,0,0,0) 100%), url('../assets/images/characters/warlock_bg.jpg');
+        }
+        &.Hunter {
+            background-image: linear-gradient(to left, #000 0, rgba(0,0,0,0) 200px, rgba(0,0,0,0) 100%), url('../assets/images/characters/hunter_bg.jpg');
         }
     
     }
