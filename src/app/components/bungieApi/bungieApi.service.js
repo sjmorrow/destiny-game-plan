@@ -8,7 +8,7 @@
     /** @ngInject */
     function bungieApi($log, samApiKey) {
 
-        var baseUrl = 'http://localhost:3005/bungie/platform/destiny/';
+        var baseUrl = 'https://cors-anywhere.herokuapp.com/http://www.bungie.net/platform/destiny/';
         var membershipType = 'tigerxbox';
         var displayName = 'xxcoastermanxx';
 
