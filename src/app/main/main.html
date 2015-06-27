@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="character-selector-container full-height">
-        <div class="character-selector" ng-repeat-start="character in main.characters" ng-click="character.selected = !character.selected">
+        <div class="character-selector" ng-repeat-start="character in main.characters" ng-click="character.selected = !character.selected" ng-class="character.class">
             <img class="character-emblem-bg" ng-src="{{character.emblemBackground}}">
             <img class="character-emblem" ng-src="{{character.emblem}}">
             <div class="character-text">
