@@ -12,6 +12,9 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 
 // bower:scss
 // endbower
+html, body, .container-fluid, .full-height {
+    height: 100%;
+}
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -25,6 +28,11 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
     img.pull-right {
         width: 50px;
     }
+}
+
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
