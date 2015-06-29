@@ -16,4 +16,13 @@ env:
   - secure: UlGJbQaj0LKxRchRKrhAuhqswwBzudOWcDCCqLGetKvBWrs2L6+yYclYE3C8ic5K1BxK3+4C5KF1HkOpissUFQltqS+wJCm8iMtcjk4E0dkUICK8uMLdWsWO70V/lbn48jY+MX/0Pc3TbXASpeVw7UE2hqrsWGgwyFCMGxn0okchk3QN5SnD2C4Wxk3xSQ0HX4gg8T+VpWYGULkZyq2Tfi+MYoJUBaXkQthN8eki0qAXVZbnRGtnlZ42gRBGEiLQ7fRcYMGNbG4E1b/nBo7/n4QVRPc0vnibE4D2m/s+kANkPWsJK3BQNSyEPkO7YS9er42g8JZEmQdGdO5u70ZOpExXRA7bs3LZDsdEnDobKRUjg2Cqh+EvawdUZvzpnKa/fmUne8owOl5N87niSamI9k2EtDAy+6tyV1RG8L9AF7IX1YLyBuPNRb037RYHoW9kN9bFy1i5GwTThqY6tJXFivWtv/f+k7+LhqJp8NiXqH3hR1I5/K3JftjGRaN4/x43e/w1GRBrjm5YZpwgfbJXp+Oxj/CJx9KFPKfNe5cjCIhpGb3dO64PD+VsI1MsKKV6r0ioWNWxzIn0oEIsIoxe8oo+d2RuuZXi69WrtF2ayO+ryJKSjosuPt8pKVxFthb2qjoWtVV1urxh1+LpUveuxy21K9ZkK2WPWHeyB0fbtsQ=
 after_success:
 - sudo apt-get -y install sshpass
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "develop" && sshpass -p $FTP_PASSWORD scp -o stricthostkeychecking=no -r ./dist/* $SSH_USER@$DEV_HOST:$WWWROOT_DEV
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "develop" && sshpass
+  -p $FTP_PASSWORD scp -o stricthostkeychecking=no -r ./dist/* $SSH_USER@$DEV_HOST:$WWWROOT_DEV
+deploy:
+  provider: heroku
+  api_key:
+    secure: CSIoN63U8mLmsMwwnCnwC3d6g7pPptMrX/7BoSh3+86nLUpnNEkOeoQKdZxQ9NTb89gPVf6NSLlpYrlblACln9jtpp91/5BACrsmNXIoA+TZtMYVCF7hItNVT1XD2DwjE1h1+h9nkSDuqY1INCbOxrbJr/1ateRW4hC4kLTHyDgMXxYAVcuXsoB8jeLodazAUZJDDoRL1xfJVrj4uMgHAsGlUjMxOpzAnUeyjs5wj4ZyLx4ap3fDKFRf8RY5iv3usFdgksrDFLJm10wpu/Vp0mB9pqsHdfWiMr1uHlESJ59WyhUZyLsCjPymVkH78upa1s+YPxfOBUwCpgDelUe49ms4YPTgk+nAToClty2uOqLdtIea2K2aAmOBWrk43wcCioYsHzL7n9xII/VkjO1NjtWfPc6kuUIQo5oYMPF9zOvNgot/32Q/SNmNOO1VnnJXd+Huacfi/bk0MW7FWTbqoH79JhutivP6oXY2D7nY3/9yfh2IunZNdmYTyYJB/5FZGH6jZpAZLwkeuSDicFSJbDcakqJtJbvPy9Za1/B0JM0RyBEZoEmC+e1013+qjMWMYXiC5SCcR44upfnna/uZtTNOUqqK45BfxzgG6LENS7c8RgT9DPZpSdS4LuoTH8mybd45pfW5p2a3k/KcNgoR5KXepbM+PiZMFTkb1NnBiG4=
+  app: dgpdev
+  on:
+    repo: sjmorrow/destiny-game-plan
+    branch: develop
