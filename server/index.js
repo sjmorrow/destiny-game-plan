@@ -4,25 +4,36 @@ var cors = require('cors');
 var app = express();
 var http = require('http');
 
+var baseUrl = 'http://www.bungie.net/platform/destiny/';
+
 app.use(cors());
 
-app.get('/membershipDetails/:membershipType/:displayName', function(req, res) {
-//    var parts = url.parse(req.url, true);
-    console.log(req.params);
-    http.get('http://www.bungie.net/platform/destiny/searchDestinyPlayer/' + req.params.membershipType + '/' + req.params.displayName + '/', function(response) {
-        // Continuously update stream with data
-        var body = '';
-        response.on('data', function(d) {
-            body += d;
-        });
-        response.on('end', function() {
+function parseResponse(response, callback) {
+    // Continuously update stream with data
+    var body = '';
+    response.on('data', function(d) {
+        body += d;
+    });
+    response.on('end', function() {
+        callback(JSON.parse(body));
+    });
+}
 
-            // Data reception is done, do whatever with it!
-            var parsed = JSON.parse(body);
-            res.json(parsed);
+app.get('/membershipDetails/:membershipType/:displayName', function(req, res) {
+    http.get(baseUrl + 'searchDestinyPlayer/' + req.params.membershipType + '/' + req.params.displayName + '/', function(response) {
+        parseResponse(response, function(json) {
+            res.json(json);
         });
     });
-})
+});
+
+app.get('/characters/:membershipType/:membershipId', function(req, res) {    
+    http.get(baseUrl + req.params.membershipType + '/account/' + req.params.membershipId + '/', function(response) {
+        parseResponse(response, function(json) {
+            res.json(json);
+        });    
+    });
+});
 
 var server = app.listen(process.env.PORT || 3005, function () {
 
