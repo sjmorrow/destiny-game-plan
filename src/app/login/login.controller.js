@@ -13,6 +13,6 @@
                 platform: vm.platform,
                 displayName: vm.displayName
             });
-        }
+        };
     }
 })();
