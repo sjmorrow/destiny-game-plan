@@ -6,7 +6,7 @@ var _ = require('underscore');
 var definitionsCache = {
     races: {},
     genders: {},
-    classes: {}
+    classes: {}    
 };
 
 function merge(obj1, obj2) {
@@ -70,6 +70,36 @@ router.get('/characters/:membershipType/:membershipId', function(req, res) {
         if (!processed) {
             processCharacters(data.Response.data.characters, res);
         }
+    });
+});
+
+router.get('/activities/:membershipType/:membershipId/:characterId', function(req, res) {
+    bungie.get(req.params.membershipType + '/account/' + req.params.membershipId + '/character/' + req.params.characterId + '/activities?definitions=true', function(err, bungieRes, data) {
+        var activities = data.Response.definitions.activities;
+        var activityTypes = data.Response.definitions.activityTypes;
+        var incompleteActivities = [];
+        
+        _.each(data.Response.data.available, function(activity) {
+            if (!activity.isCompleted) {
+                activity.activity = activities[activity.activityHash];
+                activity.type = activityTypes[activity.activity.activityTypeHash];
+                if (activity.activity.activityLevel > 0 && activity.type.identifier !== 'ACTIVITY_TYPE_STRIKE_PLAYLIST'
+                        && activity.type.identifier !== 'ACTIVITY_TYPE_STRIKE'
+                        && activity.type.identifier !== 'ACTIVITY_TYPE_EXPLORE') {
+                    incompleteActivities.push({
+                        name: activity.activity.activityName,
+                        type: activity.type.activityTypeName,
+                        description: activity.activity.activityDescription,
+                        level: activity.activity.activityLevel,
+                        typeIdentifier: activity.type.identifier,
+                        activity: activity
+                    });
+                }
+                
+            }
+        });
+        
+        res.json(incompleteActivities);
     });
 });
 
