@@ -1,3 +1,18 @@
 .login {
     text-align: center;
+    background: url('../../assets/images/destiny_logo_wallpaper.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    .btn {
+        border: 1px solid white;
+        color: white;
+        &.xbox.active {
+            background: $xbox;
+        }
+        &.psn.active {
+            background: $psn;
+        }
+    }
 }

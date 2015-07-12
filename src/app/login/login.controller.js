@@ -9,6 +9,7 @@
     function LoginCtrl($state) {
         var vm = this;
         vm.submit = function() {
+            vm.loading = true;
             $state.go('characters', {
                 platform: vm.platform,
                 displayName: vm.displayName
