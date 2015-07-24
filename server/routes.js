@@ -19,12 +19,16 @@ function merge(obj1, obj2) {
 router.get('/membershipDetails/:membershipType/:displayName', function(req, res) {
     bungie.get('searchDestinyPlayer/' + req.params.membershipType + '/' + req.params.displayName + '/', function(err, bungieRes, data) {
         //TODO: Check for err AND check data for Bungie API Errors
-        var userDetails = {
-            name: data.Response[0].displayName,
-            membershipId: data.Response[0].membershipId,
-            membershipType: req.params.membershipType
+        if(!data || !data.Response || data.Response.length === 0) {
+            res.status(404).send('No player found');
+        } else {
+            var userDetails = {
+                name: data.Response[0].displayName,
+                membershipId: data.Response[0].membershipId,
+                membershipType: req.params.membershipType
+            }
+            res.json(userDetails);
         }
-        res.json(userDetails);
     });
 });
 

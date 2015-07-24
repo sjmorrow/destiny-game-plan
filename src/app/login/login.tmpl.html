@@ -1,16 +1,18 @@
 <div class="container-fluid login">
     <div class="col-xs-12">
-        <h1>Destiny Game Plan</h1>
-        <h2>Load your characters</h2>
+        <h1 class="logo">Destiny Game Plan</h1>
+        <br />
+        <h4>Load your characters</h4>
         <form class="form" role="form">
             <div class="form-group">
                 <input placeholder="Gamertag / PSN ID" class="form-control" ng-model="login.displayName">
             </div>
             <div class="btn-group form-group">
-                <label class="btn btn-success" ng-model="login.platform" btn-radio="'tigerxbox'">Xbox</label>
-                <label class="btn btn-primary" ng-model="login.platform" btn-radio="'tigerpsn'">PSN</label>
+                <label class="btn btn-lg xbox" ng-model="login.platform" btn-radio="'tigerxbox'">Xbox</label>
+                <label class="btn btn-lg psn" ng-model="login.platform" btn-radio="'tigerpsn'">PSN</label>
             </div>
-            <div class="btn btn-lg btn-block btn-info"  ng-click="login.submit()">Save</div>
+            <div class="btn btn-lg btn-block"  ng-click="login.submit()" ng-hide="login.loading">Save</div>
+            <div class="loader" ng-show="login.loading"></div>
         </form>
     </div>
 </div>

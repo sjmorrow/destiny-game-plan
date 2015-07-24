@@ -2,7 +2,9 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss
  */
-
+$border-radius-base:        0px;
+$border-radius-large:       0px;
+$border-radius-small:       0px;
 $navbar-inverse-link-color: #5AADBB;
 $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 /**
@@ -12,8 +14,11 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 
 // bower:scss
 // endbower
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,900,300,100);
+
 html, body, .container-fluid, .full-height {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 .browsehappy {
     margin: 0.2em 0;

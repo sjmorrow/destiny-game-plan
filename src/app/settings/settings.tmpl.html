@@ -1,0 +1,10 @@
+<div class="settings" ng-init="opened = false" ng-class="{opened:opened}">
+    <button class="btn settings-toggle" ng-click="opened = !opened">Settings</button>
+    <div class="settings-content">
+        <p>You are logged in as {{settings.player.displayName}}</p>
+        <button class="btn" ui-sref="login">Logout</button>
+        <br /><br />
+        <p>TODO: Put some message here about server costs and development effort and how nothing in life is free</p>
+        <button class="btn">Donate</button>
+    </div>
+</div>

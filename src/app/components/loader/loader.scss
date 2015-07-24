@@ -1,0 +1,45 @@
+.loader {
+    margin: 0 auto;
+    position: relative;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+    &:before, &:after {
+        border-radius: 90px;
+        transform: translateZ(0);
+        border: 10px solid white;
+        content: "";
+        display: block;
+        position: absolute;
+    }
+    &:before {
+        border-bottom-color: transparent;
+        left: 10px;
+        height: 75px;
+        width: 75px;
+        animation: rotate 2s linear 0s infinite reverse;
+    }
+    &:after {
+        border-color: rgba(255,255,255, .4);
+        border-top-color: transparent;
+        height: 40px;
+        left: 28px;
+        top: 18px;
+        width: 40px;
+        animation: rotate 2s linear 0s infinite forwards;
+    }
+    &.ng-hide {
+        opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
