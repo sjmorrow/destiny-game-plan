@@ -81,30 +81,63 @@ router.get('/activities/:membershipType/:membershipId/:characterId', function(re
     bungie.get(req.params.membershipType + '/account/' + req.params.membershipId + '/character/' + req.params.characterId + '/activities?definitions=true', function(err, bungieRes, data) {
         var activities = data.Response.definitions.activities;
         var activityTypes = data.Response.definitions.activityTypes;
-        var incompleteActivities = [];
+        var details = createIncompleteActivitiesForCharacter(req.params.characterId);
+        details.incompleteActivities = [];
         
         _.each(data.Response.data.available, function(activity) {
-            if (!activity.isCompleted) {
+            //if (!activity.isCompleted) {
                 activity.activity = activities[activity.activityHash];
                 activity.type = activityTypes[activity.activity.activityTypeHash];
-                if (activity.activity.activityLevel > 0 && activity.type.identifier !== 'ACTIVITY_TYPE_STRIKE_PLAYLIST'
-                        && activity.type.identifier !== 'ACTIVITY_TYPE_STRIKE'
-                        && activity.type.identifier !== 'ACTIVITY_TYPE_EXPLORE') {
-                    incompleteActivities.push({
+                //if (activity.activity.activityLevel > 0) {
+                    details.incompleteActivities.push({
                         name: activity.activity.activityName,
                         type: activity.type.activityTypeName,
+                        completed: activity.isCompleted,
+                        new: activity.isNew,
                         description: activity.activity.activityDescription,
                         level: activity.activity.activityLevel,
                         typeIdentifier: activity.type.identifier,
                         activity: activity
                     });
-                }
+               // }
                 
-            }
+            //}
         });
         
-        res.json(incompleteActivities);
+        res.json(details);
     });
 });
+
+function createIncompleteActivitiesForCharacter(data) {
+    return {
+        nightfall : {
+            isCompleted: true
+        },
+        weekly : {
+            isCompleted: true
+        },
+        poe32: {
+            isCompleted: true
+        },
+        poe34: {
+            isCompleted: true
+        },
+        poe35: {
+            isCompleted: true
+        },
+        ce30: {
+            isCompleted: true
+        },
+        ce33: {
+            isCompleted: true
+        },
+        vog26: {
+            isCompleted: true
+        },
+        vog30: {
+            isCompleted: true
+        }
+    }
+}
 
 module.exports = router;
