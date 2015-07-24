@@ -64,7 +64,7 @@
         flex-grow: .00001;
         overflow: hidden;
         color: white;
-        background: rgb(30,36,43);
+        background: $bungie-blue;
         &.selected {
             padding: 2em;
             flex-grow: 5;

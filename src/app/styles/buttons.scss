@@ -1,5 +1,6 @@
 .btn {
     opacity: 1;
+    background: $opaque;
     //transition: opacity 0.4s ease-in-out;
     &.ng-hide {
         opacity: 0;

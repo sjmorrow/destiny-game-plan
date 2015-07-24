@@ -1,18 +1,43 @@
 .login {
     text-align: center;
-    background: url('../../assets/images/destiny_logo_wallpaper.png');
+    background: url('../../assets/images/fireteam_background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     color: white;
+    width: 100%;
+    .logo {
+        text-transform: uppercase;
+        font-weight: 300;
+    }
+    .btn-group {
+        width: 100%;
+    }
     .btn {
-        border: 1px solid white;
+        border: 1px solid rgba(255,255,255,0.8);
         color: white;
+        &.xbox, &.psn {
+            width: 50%;
+            transition: background 0.3s ease-in-out;
+        }
         &.xbox.active {
             background: $xbox;
         }
         &.psn.active {
             background: $psn;
+        }
+    }
+    input {
+        background: $opaque;
+        color: white;
+    }
+    form {
+        margin: 0 auto;
+        @include respond-to(small) {
+            width: 50%;
+        }
+        @include respond-to(large) {
+            width: 35%;
         }
     }
 }

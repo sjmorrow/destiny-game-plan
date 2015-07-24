@@ -4,6 +4,11 @@
   transform: translateY(-50%);
 }
 
+$breakpoints: (
+  'small'  : ( min-width:  768px ),
+  'medium' : ( min-width:  992px ),
+  'large'  : ( min-width: 1200px )
+);
 @mixin respond-to($name) {
   // If the key exists in the map
   @if map-has-key($breakpoints, $name) {
