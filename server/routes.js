@@ -84,25 +84,29 @@ router.get('/activities/:membershipType/:membershipId/:characterId', function(re
         var details = createIncompleteActivitiesForCharacter(req.params.characterId);
         details.incompleteActivities = [];
         
-        _.each(data.Response.data.available, function(activity) {
-            //if (!activity.isCompleted) {
-                activity.activity = activities[activity.activityHash];
-                activity.type = activityTypes[activity.activity.activityTypeHash];
+        _.each(data.Response.data.available, function(activity) {  
+            activity.activity = activities[activity.activityHash];
+            activity.type = activityTypes[activity.activity.activityTypeHash];
+            
+            if (activity.type.identifier == "ACTIVITY_TYPE_NIGHTFALL") {
+                details.nightfall.isCompleted = activity.isCompleted;
+            } else {
+                //if (!activity.isCompleted) {               
                 //if (activity.activity.activityLevel > 0) {
-                    details.incompleteActivities.push({
-                        name: activity.activity.activityName,
-                        type: activity.type.activityTypeName,
-                        completed: activity.isCompleted,
-                        new: activity.isNew,
-                        description: activity.activity.activityDescription,
-                        level: activity.activity.activityLevel,
-                        typeIdentifier: activity.type.identifier,
-                        activity: activity
-                    });
-               // }
-                
-            //}
-        });
+                details.incompleteActivities.push({
+                    name: activity.activity.activityName,
+                    type: activity.type.activityTypeName,
+                    completed: activity.isCompleted,
+                    new: activity.isNew,
+                    description: activity.activity.activityDescription,
+                    level: activity.activity.activityLevel,
+                    typeIdentifier: activity.type.identifier,
+                    activity: activity
+                });
+               // }                
+            //}        
+            }
+        });    
         
         res.json(details);
     });
@@ -111,31 +115,31 @@ router.get('/activities/:membershipType/:membershipId/:characterId', function(re
 function createIncompleteActivitiesForCharacter(data) {
     return {
         nightfall : {
-            isCompleted: true
+            isCompleted: false
         },
         weekly : {
-            isCompleted: true
+            isCompleted: false
         },
         poe32: {
-            isCompleted: true
+            isCompleted: false
         },
         poe34: {
-            isCompleted: true
+            isCompleted: false
         },
         poe35: {
-            isCompleted: true
+            isCompleted: false
         },
         ce30: {
-            isCompleted: true
+            isCompleted: false
         },
         ce33: {
-            isCompleted: true
+            isCompleted: false
         },
         vog26: {
-            isCompleted: true
+            isCompleted: false
         },
         vog30: {
-            isCompleted: true
+            isCompleted: false
         }
     }
 }
